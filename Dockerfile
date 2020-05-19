@@ -2,7 +2,13 @@ FROM python:3.7
 
 WORKDIR /usr/src/app
 
-RUN apt-get update && apt-get install -y --no-install-recommends python-dev python3-dev build-essential
+ARG __FLASK_TIMEZONE=Asia/Tehran
+ENV TZ=${__FLASK_TIMEZONE}
+
+RUN apt-get update && \
+  apt-get install -y --no-install-recommends python-dev python3-dev build-essential && \
+  echo 'Configuring timezone:' $TZ && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+  echo $TZ > /etc/timezonero
 
 ONBUILD COPY . .
 
