@@ -18,6 +18,6 @@ ONBUILD RUN pip install --disable-pip-version-check --no-cache-dir -r requiremen
 ONBUILD ARG __FLASK_APPMODULE='app:app'
 ONBUILD ENV __FLASK_APPMODULE=${__FLASK_APPMODULE}
 
-CMD gunicorn $__FLASK_APPMODULE --bind 0.0.0.0:8000
+CMD gunicorn $__FLASK_APPMODULE --bind 0.0.0.0:8000 --access-logfile '-'
 
 EXPOSE 8000
