@@ -2,8 +2,8 @@ FROM python:3.7
 
 WORKDIR /usr/src/app
 
-ARG __FLASK_TIMEZONE=Asia/Tehran
-ENV TZ=${__FLASK_TIMEZONE}
+ONBUILD ARG __FLASK_TIMEZONE=Asia/Tehran
+ONBUILD ENV TZ=${__FLASK_TIMEZONE}
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends python-dev python3-dev build-essential && \
